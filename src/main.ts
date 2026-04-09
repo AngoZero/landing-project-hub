@@ -1,12 +1,23 @@
 import { getInitialLang, applyLanguage, type Lang } from './i18n';
 import { getInitialTheme, applyTheme, type Theme } from './theme';
 
+function updateScreenshots(theme: Theme, lang: Lang): void {
+  const nextAttr = `shot${theme === 'dark' ? 'Dark' : 'Light'}${lang === 'en' ? 'En' : 'Es'}` as const;
+
+  for (const image of document.querySelectorAll<HTMLImageElement>('[data-shot-dark-en][data-shot-dark-es][data-shot-light-en][data-shot-light-es]')) {
+    const nextSrc = image.dataset[nextAttr];
+    if (nextSrc && image.getAttribute('src') !== nextSrc) {
+      image.setAttribute('src', nextSrc);
+    }
+  }
+}
+
 // ── Scroll reveal with stagger ────────────────────────
 const reveals = document.querySelectorAll<HTMLElement>('.reveal');
 
 if ('IntersectionObserver' in window) {
   const staggerDelays = new Map<Element, number>();
-  const grids = document.querySelectorAll('.features__grid, .screenshots__grid, .download__grid');
+  const grids = document.querySelectorAll('.features__hero, .features__core, .features__extras, .screenshots__grid, .download__grid');
 
   for (const grid of grids) {
     const children = grid.querySelectorAll('.reveal');
@@ -63,20 +74,24 @@ applyLanguage(currentLang);
 document.getElementById('lang-toggle')?.addEventListener('click', () => {
   currentLang = currentLang === 'es' ? 'en' : 'es';
   applyLanguage(currentLang);
+  updateScreenshots(currentTheme, currentLang);
 });
 
 // ── Theme ─────────────────────────────────────────────
 let currentTheme: Theme = getInitialTheme();
 applyTheme(currentTheme);
+updateScreenshots(currentTheme, currentLang);
 
 document.getElementById('theme-toggle')?.addEventListener('click', () => {
   currentTheme = currentTheme === 'light' ? 'dark' : 'light';
   applyTheme(currentTheme);
+  updateScreenshots(currentTheme, currentLang);
 });
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
   if (!localStorage.getItem('theme')) {
     currentTheme = e.matches ? 'dark' : 'light';
     applyTheme(currentTheme);
+    updateScreenshots(currentTheme, currentLang);
   }
 });
