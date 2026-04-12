@@ -13,7 +13,7 @@ function updateScreenshots(theme, lang) {
 const reveals = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window) {
     const staggerDelays = new Map();
-    const grids = document.querySelectorAll('.features__hero, .features__core, .features__extras, .screenshots__grid, .download__grid');
+    const grids = document.querySelectorAll('.features__hero, .features__core, .features__extras, .screenshots__grid, .releases__grid, .download__grid');
     for (const grid of grids) {
         const children = grid.querySelectorAll('.reveal');
         children.forEach((child, i) => staggerDelays.set(child, i * 80));

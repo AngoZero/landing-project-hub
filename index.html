@@ -39,6 +39,7 @@
       <nav class="site-header__nav">
         <a href="#features" data-i18n="nav.features">Funciones</a>
         <a href="#screenshots" data-i18n="nav.screenshots">Capturas</a>
+        <a href="#releases" data-i18n="nav.releases">Versiones</a>
         <a href="#download" data-i18n="nav.download">Descarga</a>
       </nav>
       <div class="site-header__controls">
@@ -273,6 +274,51 @@
           />
           <figcaption data-i18n="screenshot.onboarding">Onboarding</figcaption>
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ RELEASES ════ -->
+  <section class="releases" id="releases">
+    <div class="container">
+      <div class="releases__header">
+        <div>
+          <p class="eyebrow" data-i18n="releases.eyebrow">VERSIONES</p>
+          <h2 class="section-title" data-i18n="releases.title">Qué cambió recientemente.</h2>
+        </div>
+        <p class="releases__sub" data-i18n="releases.sub">Un historial corto de builds públicos para saber qué estás descargando.</p>
+      </div>
+
+      <div class="releases__grid">
+        <article class="release-card release-card--latest reveal" aria-labelledby="release-latest-title">
+          <div class="release-card__meta">
+            <h3 class="release-card__version" id="release-latest-title">v0.1.5</h3>
+            <span class="release-card__badge" data-i18n="releases.latest.badge">Latest</span>
+          </div>
+          <time class="release-card__date" datetime="2026-04-12" data-i18n="releases.latest.date">12 abr 2026</time>
+          <p class="release-card__summary" data-i18n="releases.latest.summary">Release corregida con descargables consistentes para macOS y Windows, versionado real del app y pipeline de publicación ajustado.</p>
+          <ul class="release-card__list">
+            <li data-i18n="releases.latest.item1">Instaladores actualizados para macOS Apple Silicon y Windows.</li>
+            <li data-i18n="releases.latest.item2">Release pipeline alineado al tag publicado.</li>
+            <li data-i18n="releases.latest.item3">Links de descarga estables desde GitHub Releases.</li>
+          </ul>
+          <a class="button button--ghost" href="https://github.com/AngoZero/project-hub/releases" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="releases.cta">Ver todas en GitHub</span>
+          </a>
+        </article>
+
+        <div class="release-timeline reveal">
+          <article class="release-timeline__item">
+            <span class="release-timeline__dot" aria-hidden="true"></span>
+            <div>
+              <div class="release-timeline__meta">
+                <h3>v0.1.0</h3>
+                <time datetime="2026-04-09" data-i18n="releases.initial.date">9 abr 2026</time>
+              </div>
+              <p data-i18n="releases.initial.summary">Primera release pública con instaladores sin firmar para probar Project Hub localmente.</p>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </section>

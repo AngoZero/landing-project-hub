@@ -17,6 +17,7 @@
   --accent: #1a1a1a;
   --success: #16a34a;
   --danger: #dc2626;
+  --release-line: rgba(0, 0, 0, 0.08);
   --shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.25);
   --shadow-sm: 4px 4px 0 0 rgba(0, 0, 0, 0.25);
   --shadow-lg: 8px 8px 0 0 rgba(0, 0, 0, 0.25);
@@ -34,6 +35,7 @@
   --accent: #e5e7eb;
   --success: #4ade80;
   --danger: #f87171;
+  --release-line: rgba(229, 231, 235, 0.12);
   --shadow: 6px 6px 0 0 rgba(229, 231, 235, 0.45);
   --shadow-sm: 4px 4px 0 0 rgba(229, 231, 235, 0.45);
   --shadow-lg: 8px 8px 0 0 rgba(229, 231, 235, 0.45);
@@ -598,6 +600,191 @@ a {
   font-style: italic;
 }
 
+/* ── Releases ──────────────────────────────────────── */
+
+.releases {
+  padding: 6rem 0;
+  border-top: var(--border-width) solid var(--border);
+  background:
+    linear-gradient(135deg, transparent 0%, transparent 48%, var(--release-line) 48%, var(--release-line) 52%, transparent 52%, transparent 100%),
+    var(--bg);
+}
+
+.releases__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 3rem;
+}
+
+.releases__header .section-title {
+  margin-bottom: 0;
+}
+
+.releases__sub {
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+.releases__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.release-card,
+.release-timeline {
+  border: var(--border-width) solid var(--border);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.release-card:hover,
+.release-timeline:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.release-card {
+  position: relative;
+  overflow: hidden;
+  padding: 2.25rem;
+}
+
+.release-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 0.7rem;
+  background: repeating-linear-gradient(90deg, var(--text) 0 18px, var(--success) 18px 36px);
+}
+
+.release-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0.6rem;
+}
+
+.release-card__version {
+  font-family: var(--font-mono);
+  font-size: clamp(2.3rem, 6vw, 4.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+}
+
+.release-card__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0.2rem 0.7rem;
+  border: 2px solid var(--border);
+  background: var(--success);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.release-card__date,
+.release-timeline time {
+  display: block;
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.release-card__summary {
+  max-width: 62ch;
+  margin: 1.5rem 0;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.release-card__list {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.release-card__list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.7rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.release-card__list li::before {
+  content: '>';
+  color: var(--success);
+  font-family: var(--font-mono);
+}
+
+.release-timeline {
+  position: relative;
+  padding: 2rem;
+}
+
+.release-timeline::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  bottom: 2rem;
+  left: 2.35rem;
+  width: 3px;
+  background: var(--border);
+}
+
+.release-timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05rem 1fr;
+  gap: 1rem;
+}
+
+.release-timeline__dot {
+  position: relative;
+  z-index: 1;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-top: 0.35rem;
+  border: 3px solid var(--border);
+  background: var(--bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.release-timeline__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.7rem;
+}
+
+.release-timeline h3 {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.release-timeline p {
+  color: var(--text-muted);
+}
+
 /* ── Tech Stack ─────────────────────────────────────── */
 
 .tech-stack {
@@ -744,6 +931,11 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .releases__header,
+  .releases__grid {
+    grid-template-columns: 1fr;
+  }
+
   .download__grid {
     grid-template-columns: 1fr;
     max-width: 400px;
@@ -804,8 +996,23 @@ a {
 
   .features,
   .screenshots,
+  .releases,
   .download {
     padding: 4rem 0;
+  }
+
+  .releases__header {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .release-card,
+  .release-timeline {
+    padding: 1.5rem;
+  }
+
+  .release-timeline::before {
+    left: 1.85rem;
   }
 }
 

@@ -17,7 +17,7 @@ const reveals = document.querySelectorAll<HTMLElement>('.reveal');
 
 if ('IntersectionObserver' in window) {
   const staggerDelays = new Map<Element, number>();
-  const grids = document.querySelectorAll('.features__hero, .features__core, .features__extras, .screenshots__grid, .download__grid');
+  const grids = document.querySelectorAll('.features__hero, .features__core, .features__extras, .screenshots__grid, .releases__grid, .download__grid');
 
   for (const grid of grids) {
     const children = grid.querySelectorAll('.reveal');
